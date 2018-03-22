@@ -58,13 +58,13 @@ pipelines:
               serviceEndpoint: cityworksapi 
               changeOrigin: true
   - name: three
-      apiEndpoints:
-        - cwapp
-      policies:
-        - cors:
-#        - key-auth:
-        - proxy:
-            - action:
-                serviceEndpoint: cityworks 
-                changeOrigin: true
+    apiEndpoints:
+      - cwapp
+    policies:
+      - cors:
+#      - key-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: cityworks 
+              changeOrigin: true
 
