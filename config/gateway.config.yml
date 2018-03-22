@@ -16,14 +16,14 @@ apiEndpoints:
   cwapp:
     host: ptletctstapplv1
     paths:
-      - '/*'      
+      - '/cityworkstest/*'      
 serviceEndpoints:
   httpbin:
     url: 'https://httpbin.org'
   cityworksapi:
     url: 'http://rhsoaprdapp1.ci.raleigh.nc.us:8183/RaleighAPI/cityworks'
   cityworks:
-    url: 'http://cworktstappwv1/cityworkstest'
+    url: 'http://cworktstappwv1'
 policies:
   - basic-auth
   - cors
@@ -57,7 +57,14 @@ pipelines:
           - action:
               serviceEndpoint: cityworksapi 
               changeOrigin: true
-      - proxy:
-          - action:
-              serviceEndpoint: cityworks   
+  - name: three
+      apiEndpoints:
+        - cwapp
+      policies:
+        - cors:
+#        - key-auth:
+        - proxy:
+            - action:
+                serviceEndpoint: cityworks 
+                changeOrigin: true
 
